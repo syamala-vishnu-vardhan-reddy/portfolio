@@ -1,0 +1,64 @@
+/* Projects.css */
+.projects {
+    background-color: #fff;
+    padding: 50px 0;
+  }
+  
+  .projects .container {
+    text-align: center;
+  }
+  /* Projects.css */
+.projects {
+    background-color: #fff;
+    padding: 50px 0;
+  }
+  
+  .projects .container {
+    text-align: center;
+  }
+  
+  .project-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .project-item {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    text-align: left;
+  }
+  
+  .project-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .project-item h3 {
+    margin-top: 15px;
+    font-size: 1.5em;
+  }
+  
+  .project-item p {
+    margin: 10px 0;
+  }
+  
+  .project-item a {
+    color: #007BFF;
+    text-decoration: none;
+  }
+  
+  .project-item a:hover {
+    text-decoration: underline;
+  }
+  .project-img {
+    width: 10%;
+    max-width: 30px;
+    height: 30px;
+  }
+  
