@@ -1,4 +1,4 @@
-import  { useState, ChangeEvent } from 'react'
+import { useState, useEffect, ChangeEvent } from 'react'
 import {
   TextField,
   Button,
@@ -37,6 +37,17 @@ function TodoList () {
   const [editIndex, setEditIndex] = useState<number | null>(null)
   const [deleteIndex, setDeleteIndex] = useState<number | null>(null)
   const [openDialog, setOpenDialog] = useState<boolean>(false)
+
+  useEffect(() => {
+    const storedItems = localStorage.getItem('todoList')
+    if (storedItems) {
+      setListItems(JSON.parse(storedItems))
+    }
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem('todoList', JSON.stringify(listItems))
+  }, [listItems])
 
   function handleChangeText (event: ChangeEvent<HTMLInputElement>): void {
     setInputText(event.target.value)
