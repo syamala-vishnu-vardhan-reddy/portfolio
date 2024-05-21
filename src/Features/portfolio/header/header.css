@@ -10,4 +10,10 @@
     margin: 0 auto;
     padding: 0 20px;
   }
-  
+  .portfolio-title {
+    margin-right: 20px;
+  }
+  .active {
+    color: red;
+  }
+    
