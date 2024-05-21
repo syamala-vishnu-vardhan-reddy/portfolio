@@ -86,7 +86,7 @@ const Header: React.FC = () => {
           </Button>
           <Avatar
             alt='Syamala Vishnu Vardhan Reddy'
-            src='/src/assets/logo/project.jpg'
+            src='/assets/logo/project.jpg'
             style={{ marginLeft: '16px', cursor: 'pointer' }}
             onClick={handleAvatarClick}
           />
@@ -109,7 +109,7 @@ const Header: React.FC = () => {
         <Box sx={{ p: 2, textAlign: 'center' }}>
           <Avatar
             alt='Syamala Vishnu Vardhan Reddy'
-            src='/src/assets/logo/project.jpg'
+            src='/assets/logo/project.jpg'
             style={{ width: '100px', height: '100px', margin: 'auto' }}
           />
           <Typography variant='h6' sx={{ mt: 1 }}>
