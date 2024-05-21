@@ -26,7 +26,7 @@ const Projects: React.FC = () => {
             />
             <CardContent>
               <Typography variant='h5' component='div'>
-                Project 1
+                Weather App
               </Typography>
               <Typography variant='body2' color='text.secondary'>
                 The weather app helps you check the weather in different
@@ -57,7 +57,7 @@ const Projects: React.FC = () => {
             />
             <CardContent>
               <Typography variant='h5' component='div'>
-                Project 2
+                TodoList App
               </Typography>
               <Typography variant='body2' color='text.secondary'>
                 The to-do list app is a simple tool to help you organize your
@@ -89,7 +89,7 @@ const Projects: React.FC = () => {
             />
             <CardContent>
               <Typography variant='h5' component='div'>
-                Project 3
+                E-Commerce App
               </Typography>
               <Typography variant='body2' color='text.secondary'>
                 This project showcases an e-commerce application where users can

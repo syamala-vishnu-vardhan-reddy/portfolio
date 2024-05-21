@@ -56,11 +56,21 @@ const WeatherApp: React.FC = () => {
 
   return (
     <>
-      <IconButton color='primary' component={Link} to='/projects' sx={{ m: 2 }}>
-        <ArrowBackIcon />
-      </IconButton>
-
       <Container maxWidth='md'>
+        <Box sx={{ display: 'flex', alignItems: 'center', mt: 2, mb: 2 }}>
+          <IconButton
+            color='primary'
+            component={Link}
+            to='/projects'
+            sx={{ mr: 2 }}
+          >
+            <ArrowBackIcon />
+          </IconButton>
+          <Typography variant='h4' color='secondary'>
+            Weather App
+          </Typography>
+        </Box>
+
         <Paper elevation={3} sx={{ p: 4, mt: 4, borderRadius: '12px' }}>
           <Box
             sx={{
@@ -70,9 +80,6 @@ const WeatherApp: React.FC = () => {
               mb: 4
             }}
           >
-            <Typography variant='h3' gutterBottom>
-              Weather App
-            </Typography>
             <TextField
               label='Enter location'
               variant='outlined'

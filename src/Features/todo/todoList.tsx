@@ -128,16 +128,16 @@ function TodoList () {
     <>
       <IconButton color='primary' component={Link} to='/projects' sx={{ m: 2 }}>
         <ArrowBackIcon />
-      </IconButton>
-
-      <div style={{ padding: '20px' }}>
-        <Typography
+      </IconButton><Typography
           variant='h6'
           gutterBottom
-          sx={{ marginLeft: 38, color: 'red' }}
+          sx={{ marginLeft: 11, color: 'lightblue' ,marginTop:-6.5}}
         >
           <strong>Todolist</strong>
         </Typography>
+
+      <div style={{ padding: '20px' }}>
+        
         <TextField
           error={inputText.length > 0 && inputText.length < 4}
           id='text'
@@ -225,7 +225,7 @@ function TodoList () {
                     key={index}
                     style={{
                       backgroundColor:
-                        editIndex === index ? 'blue' : 'transparent'
+                        editIndex === index ? 'lightblue' : 'transparent'
                     }}
                   >
                     <TableCell>{index + 1}</TableCell>
