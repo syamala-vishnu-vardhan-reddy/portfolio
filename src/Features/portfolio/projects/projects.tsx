@@ -21,7 +21,7 @@ const Projects: React.FC = () => {
             <CardMedia
               component='img'
               height='140'
-              image='src/Features/portfolio/images/project1.jpg'
+              image='src/assets/logo/project1.jpg'
               alt='Project 1'
             />
             <CardContent>
@@ -52,7 +52,7 @@ const Projects: React.FC = () => {
             <CardMedia
               component='img'
               height='140'
-              image='src/Features/portfolio/images/project2.jpg'
+              image='src/assets/logo/project2.jpg'
               alt='Project 2'
             />
             <CardContent>
@@ -84,7 +84,7 @@ const Projects: React.FC = () => {
             <CardMedia
               component='img'
               height='140'
-              image='src/Features/portfolio/images/project3.jpg'
+              image='src/assets/logo/project3.jpg'
               alt='Project 3'
             />
             <CardContent>

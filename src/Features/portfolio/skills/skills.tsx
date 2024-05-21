@@ -7,7 +7,7 @@ const Skills = () => {
       rating: 4.5,
       icon: (
         <img
-          src={'src/Features/portfolio/images/javascriptlogo.png'}
+          src={'src/assets/logo/javascriptlogo.png'}
           style={{ width: 50, height: 50 }}
         />
       )
@@ -17,7 +17,7 @@ const Skills = () => {
       rating: 4.0,
       icon: (
         <img
-          src={'src/Features/portfolio/images/reactlogo.png'}
+          src={'src/assets/logo/reactlogo.png'}
           style={{ width: 50, height: 50 }}
         />
       )
@@ -27,7 +27,7 @@ const Skills = () => {
       rating: 4.0,
       icon: (
         <img
-          src={'src/Features/portfolio/images/typescriptlogo.png'}
+          src={'src/assets/logo/typescriptlogo.png'}
           style={{ width: 50, height: 50 }}
         />
       )
@@ -37,7 +37,7 @@ const Skills = () => {
       rating: 3.5,
       icon: (
         <img
-          src={'src/Features/portfolio/images/csslogo.png'}
+          src={'src/assets/logo/csslogo.png'}
           style={{ width: 50, height: 50 }}
         />
       )
@@ -47,7 +47,7 @@ const Skills = () => {
       rating: 4.0,
       icon: (
         <img
-          src={'src/Features/portfolio/images/htmllogo.png'}
+          src={'src/assets/logo/htmllogo.png'}
           alt='React Logo'
           style={{ width: 50, height: 50 }}
         />
@@ -58,7 +58,7 @@ const Skills = () => {
       rating: 4.0,
       icon: (
         <img
-          src={'src/Features/portfolio/images/redux-icon.png'}
+          src={'src/assets/logo/redux-icon.png'}
           alt='React Logo'
           style={{ width: 50, height: 50 }}
         />
@@ -69,7 +69,7 @@ const Skills = () => {
       rating: 4.0,
       icon: (
         <img
-          src={'src/Features/portfolio/images/sagalogo.png'}
+          src={'src/assets/logo/sagalogo.png'}
           alt='React Logo'
           style={{ width: 50, height: 50 }}
         />
@@ -80,7 +80,7 @@ const Skills = () => {
       rating: 4.0,
       icon: (
         <img
-          src={'src/Features/portfolio/images/materiallogo.png'}
+          src={'src/assets/logo/materiallogo.png'}
           alt='React Logo'
           style={{ width: 50, height: 50 }}
         />
