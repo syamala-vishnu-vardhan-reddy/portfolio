@@ -76,11 +76,9 @@ const weatherSlice = createSlice({
   name: 'weather',
   initialState,
   reducers: {
-    fetchDataStart (state, _action: PayloadAction<FetchDataPayload>) {
+    fetchDataStart (state) {
       state.loading = true
       state.error = null
-      const { location } = _action.payload
-      console.log('Location:', location)
     },
     fetchDataSuccess (state, action: PayloadAction<WeatherData>) {
       state.loading = false

@@ -128,7 +128,8 @@ function TodoList () {
     <>
       <IconButton color='primary' component={Link} to='/projects' sx={{ m: 2 }}>
         <ArrowBackIcon />
-      </IconButton><Typography
+      </IconButton>  
+      <Typography
           variant='h6'
           gutterBottom
           sx={{ marginLeft: 11, color: 'lightblue' ,marginTop:-6.5}}
