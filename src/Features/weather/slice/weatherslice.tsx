@@ -3,67 +3,37 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 export interface WeatherData {
   location: {
     name: string;
-    region: string;
-    country: string;
-    tz_id: string;
-    localtime: string;
   };
   current: {
-    last_updated: string;
     temp_c: number;
-    temp_f: number;
-    condition: {
-      text: string;
-      icon: string;
-      code: number;
-    };
-    wind_kph: number; // Wind speed in km/h
-    humidity: number; // Humidity percentage
+    condition: { text: string; icon: string };
+    wind_kph: number;
   };
   forecast: {
-    forecastday: {
+    forecastday: Array<{
       date: string;
       day: {
         maxtemp_c: number;
-        maxtemp_f: number;
         mintemp_c: number;
-        mintemp_f: number;
-        condition: {
-          text: string;
-          icon: string;
-          code: number;
-        };
-        maxwind_kph: number; // Maximum wind speed in km/h
-        avghumidity: number; // Average humidity percentage
+        maxwind_kph: number;
+        condition: { text: string };
       };
       astro: {
         sunrise: string;
         sunset: string;
       };
-      hour: {
-        time: string; // Time of the forecast
-        temp_c: number; // Temperature in Celsius
-        temp_f: number; // Temperature in Fahrenheit
-        condition: {
-          text: string; // Weather condition description
-          icon: string; // URL to weather condition icon
-          code: number; // Weather condition code
-        };
-        wind_kph: number; // Wind speed in km/h
-        humidity: number; // Humidity percentage
-      }[];
-    }[];
+    }>;
   };
 }
 
 interface WeatherState {
-  data: WeatherData | string;
+  data: WeatherData | null; // Ensure the state can be null initially
   loading: boolean;
   error: string | null;
 }
 
 const initialState: WeatherState = {
-  data: "",
+  data: null,
   loading: false,
   error: null,
 };
@@ -72,17 +42,18 @@ const weatherSlice = createSlice({
   name: "weather",
   initialState,
   reducers: {
-    fetchDataStart(state) {
+    fetchDataStart(state, action: PayloadAction<{ location: string }>) {
       state.loading = true;
       state.error = null;
-    },
-    fetchDataSuccess(state, action: PayloadAction<WeatherData>) {
-      state.loading = false;
       state.data = action.payload;
     },
-    fetchDataFailure(state, action: PayloadAction<string>) {
+    fetchDataSuccess(state, action: PayloadAction<WeatherData>) {
+      state.data = action.payload;
       state.loading = false;
+    },
+    fetchDataFailure(state, action: PayloadAction<string>) {
       state.error = action.payload;
+      state.loading = false;
     },
   },
 });

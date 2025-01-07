@@ -115,7 +115,7 @@ export default function EMICalculator() {
                   min={100000}
                   step={100000}
                   max={100000000}
-                  onChange={(event, newValue) =>
+                  onChange={(_event, newValue) =>
                     setLoanAmount(newValue as number)
                   }
                   valueLabelDisplay="auto"
@@ -152,7 +152,7 @@ export default function EMICalculator() {
                   min={1}
                   step={0.1}
                   max={30}
-                  onChange={(event, newValue) =>
+                  onChange={(_event, newValue) =>
                     setInterestRate(newValue as number)
                   }
                   valueLabelDisplay="auto"
@@ -189,7 +189,7 @@ export default function EMICalculator() {
                   min={1}
                   step={1}
                   max={30}
-                  onChange={(event, newValue) =>
+                  onChange={(_event, newValue) =>
                     setLoanTenure(newValue as number)
                   }
                   valueLabelDisplay="auto"
