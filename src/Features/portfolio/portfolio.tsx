@@ -1,6 +1,6 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useState } from "react";
 import { Box, CssBaseline, ThemeProvider, createTheme } from "@mui/material";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import Home from "./home/home";
 import About from "./about/about";
 import Skills from "./skills/skills";
@@ -9,47 +9,49 @@ import Contact from "./contact/contact";
 import Header from "./header/header";
 import Footer from "./footer/footer";
 
-const lightTheme = createTheme({
-  palette: {
-    mode: "light",
-    primary: {
-      main: "#30e330",
-    },
-    secondary: {
-      main: "#9315ed",
-    },
-  },
-  typography: {
-    fontFamily: "Arial, sans-serif",
-  },
-});
-
-const darkTheme = createTheme({
-  palette: {
-    mode: "dark",
-    primary: {
-      main: "#de25e8",
-    },
-    secondary: {
-      main: "#e831e5",
-    },
-  },
-});
-
 const Portfolio: React.FC = () => {
-  const [isDarkMode, setIsDarkMode] = React.useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [selectedTheme, setSelectedTheme] = useState<
+    "green" | "pink" | "blue" | "orange" | "purple"
+  >("green");
 
   const toggleTheme = () => setIsDarkMode((prevMode) => !prevMode);
+  const handleThemeChange = (theme: string) =>
+    setSelectedTheme(theme as "green" | "pink" | "blue" | "orange" | "purple");
+
+  const theme = createTheme({
+    palette: {
+      mode: isDarkMode ? "dark" : "light",
+      primary: {
+        main:
+          selectedTheme === "green"
+            ? "#30e330"
+            : selectedTheme === "pink"
+            ? "#9315ed"
+            : selectedTheme === "blue"
+            ? "#1e88e5"
+            : selectedTheme === "orange"
+            ? "#ff9800"
+            : "#9c27b0", // Purple
+      },
+    },
+  });
 
   return (
-    <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Router>
+      {/* Use HashRouter with a basename */}
+      <HashRouter>
         <Box
           sx={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
         >
-          {/* Header with Theme Toggle */}
-          <Header toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
+          {/* Header */}
+          <Header
+            toggleTheme={toggleTheme}
+            isDarkMode={isDarkMode}
+            handleThemeChange={handleThemeChange}
+            selectedTheme={selectedTheme}
+          />
 
           {/* Main Content */}
           <Box sx={{ flexGrow: 1, p: 3 }}>
@@ -65,7 +67,7 @@ const Portfolio: React.FC = () => {
           {/* Footer */}
           <Footer />
         </Box>
-      </Router>
+      </HashRouter>
     </ThemeProvider>
   );
 };

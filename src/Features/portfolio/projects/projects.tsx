@@ -13,7 +13,9 @@ import CloseIcon from "@mui/icons-material/Close";
 import WeatherApp from "../../weather/weather";
 import TodoList from "../../todo/todoList";
 import Calculator from "../../calculator/calculator";
+import Tango from "../../tango/tango";
 import EMICalculator from "../../EMICalulator/EMICalculator";
+import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 
 const projects = [
   {
@@ -21,32 +23,54 @@ const projects = [
     title: "Weather",
     description:
       "The weather app helps you check the weather in different locations. You can enter a city or town name, and it will show you the current temperature and weather conditions.",
-    image: "assets/logo/project1.jpg",
+    image: "/assets/logo/project1.jpg",
     component: <WeatherApp />,
+    internal: true,
+  },
+  {
+    id: "Ecommerce",
+    title: "Ecommerce",
+    description:
+      "An e-commerce website is an online store where customers can buy products,services,digital items.A virtual storefront, allowing customers to browse products, add them to their cart, and make purchases.",
+    image: "/assets/logo/project3.jpg",
+    component: "https://av-ecommerce-client.onrender.com/",
+    internal: false,
   },
   {
     id: "todo-list",
     title: "TodoList",
     description:
       "The to-do list app is a simple tool to help you organize your tasks. You can add tasks, mark them as completed, and delete them when they're done.",
-    image: "assets/logo/project2.jpg",
+    image: "/assets/logo/project2.jpg",
     component: <TodoList />,
+    internal: true,
+  },
+  {
+    id: "tango",
+    title: "tango",
+    description:
+      "The to-do list app is a simple tool to help you organize your tasks. You can add tasks, mark them as completed, and delete them when they're done.",
+    image: "/assets/logo/project2.jpg",
+    component: <Tango />,
+    internal: true,
   },
   {
     id: "calculator",
     title: "Calculator",
     description:
       "A user-friendly calculator for basic and advanced mathematical operations. It supports addition, subtraction, multiplication, and division.",
-    image: "assets/logo/project3.jpg",
+    image: "/assets/logo/project3.jpg",
     component: <Calculator />,
+    internal: true,
   },
   {
     id: "EMICalculator",
     title: "EMICalculator",
     description:
       "A calculator designed to calculate the EMI for loans, helping users estimate monthly payments.",
-    image: "assets/logo/project3.jpg",
+    image: "/assets/logo/project3.jpg",
     component: <EMICalculator />,
+    internal: true,
   },
 ];
 
@@ -125,15 +149,28 @@ const Projects: React.FC = () => {
                           {project.description}
                         </Typography>
                       </CardContent>
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        component={Link}
-                        to={`/projects/${project.id}`}
-                        sx={{ m: 2 }}
-                      >
-                        Open
-                      </Button>
+                      {project.internal ? (
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          component={Link}
+                          to={`/projects/${project.id}`}
+                          sx={{ m: 2 }}
+                        >
+                          Open
+                        </Button>
+                      ) : (
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          href={project.component as string}
+                          sx={{ m: 2 }}
+                          target="_blank"
+                        >
+                          lanch
+                          <OpenInNewIcon />
+                        </Button>
+                      )}
                     </Card>
                   </Grid>
                 ))}
