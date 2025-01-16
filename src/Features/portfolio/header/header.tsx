@@ -8,8 +8,6 @@ import {
   Popover,
   Box,
   IconButton,
-  Menu,
-  MenuItem,
   useMediaQuery,
 } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
@@ -17,19 +15,10 @@ import EmailIcon from "@mui/icons-material/Email";
 import PhoneIcon from "@mui/icons-material/Phone";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
-interface HeaderProps {
-  toggleTheme: () => void;
-  isDarkMode: boolean;
-  handleThemeChange: (theme: string) => void; // Changed this to directly pass the theme value
-  selectedTheme: "green" | "pink" | "blue" | "orange" | "purple";
-}
-
-const Header: React.FC<HeaderProps> = ({ handleThemeChange }) => {
+const Header = () => {
   const location = useLocation();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [themeAnchorEl, setThemeAnchorEl] = useState<null | HTMLElement>(null);
 
   const handleAvatarClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -41,19 +30,6 @@ const Header: React.FC<HeaderProps> = ({ handleThemeChange }) => {
 
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
-
-  const handleThemeMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setThemeAnchorEl(event.currentTarget);
-  };
-
-  const handleThemeMenuClose = () => {
-    setThemeAnchorEl(null);
-  };
-
-  const handleThemeSelect = (theme: string) => {
-    handleThemeChange(theme);
-    setThemeAnchorEl(null); // Close the menu after selecting a theme
-  };
 
   // Media Query for Mobile
   const isMobile = useMediaQuery("(max-width:600px)");
@@ -123,28 +99,6 @@ const Header: React.FC<HeaderProps> = ({ handleThemeChange }) => {
               </Button>
             </>
           )}
-
-          {/* Theme Dropdown */}
-          <IconButton onClick={handleThemeMenuOpen} color="inherit">
-            <ArrowDropDownIcon />
-          </IconButton>
-          <Menu
-            anchorEl={themeAnchorEl}
-            open={Boolean(themeAnchorEl)}
-            onClose={handleThemeMenuClose}
-          >
-            <MenuItem onClick={() => handleThemeSelect("green")}>
-              Green
-            </MenuItem>
-            <MenuItem onClick={() => handleThemeSelect("pink")}>Pink</MenuItem>
-            <MenuItem onClick={() => handleThemeSelect("blue")}>Blue</MenuItem>
-            <MenuItem onClick={() => handleThemeSelect("orange")}>
-              Orange
-            </MenuItem>
-            <MenuItem onClick={() => handleThemeSelect("purple")}>
-              Purple
-            </MenuItem>
-          </Menu>
 
           {/* Avatar */}
           <Avatar
