@@ -12,6 +12,7 @@ import {
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import emailjs from "emailjs-com";
+import { motion } from "framer-motion";
 
 const Home: React.FC = () => {
   const [open, setOpen] = useState(false);
@@ -64,88 +65,100 @@ const Home: React.FC = () => {
         textAlign: "center",
       }}
     >
-      <Box
-        component="img"
-        src="/assets/logo/vishnu.jpg"
-        alt="Profile"
-        sx={{
-          width: "300px",
-          height: "300px",
-          borderRadius: "50%",
-          border: "5px solid #FFC107",
-          marginRight: "2rem",
-        }}
-      />
-
-      <Box>
-        <Typography
-          variant="h3"
-          sx={{ fontWeight: "bold", marginBottom: "1rem" }}
-        >
-          Vishnu Vardhan Reddy
-        </Typography>
-        <Typography
-          variant="subtitle1"
-          sx={{ marginBottom: "2rem", maxWidth: "600px", marginX: "auto" }}
-        >
-          I’m a passionate front-end developer specializing in creating
-          interactive, responsive, and user-friendly web applications. I bring
-          designs to life with HTML, CSS, JavaScript, and React.
-        </Typography>
-        <Box sx={{ display: "flex", gap: "1rem", justifyContent: "center" }}>
-          <Button
-            variant="contained"
-            color="primary"
-            href="" // Google Drive link
-            download="Vishnu_Vardhan_Reddy_CV"
-            sx={{
-              backgroundColor: "#FFC107",
-              color: "#000",
-              fontWeight: "bold",
-              "&:hover": { backgroundColor: "#FFD54F" },
-            }}
-          >
-            Download CV
-          </Button>
-
-          <Button
-            variant="outlined"
-            color="primary"
-            onClick={() => setOpen(true)}
-            sx={{
-              borderColor: "#FFC107",
-              color: "#FFC107",
-              fontWeight: "bold",
-              "&:hover": { color: "#FFD54F" },
-            }}
-          >
-            Hire Me
-          </Button>
-        </Box>
+      <motion.div
+        initial={{ x: "-50vw" }}
+        animate={{ x: 0 }}
+        transition={{ type: "spring", stiffness: 10 }}
+      >
         <Box
+          component="img"
+          src="/assets/logo/vishnu.jpg"
+          alt="Profile"
           sx={{
-            marginTop: "2rem",
-            display: "flex",
-            gap: "1rem",
-            justifyContent: "center",
+            width: "300px",
+            height: "300px",
+            borderRadius: "50%",
+            border: "5px solid #FFC107",
+            marginRight: "2rem",
           }}
-        >
-          <a
-            href="https://github.com/syamala-vishnu-vardhan-reddy"
-            target="_blank"
-            rel="noopener noreferrer"
+        />
+      </motion.div>
+
+      <motion.div
+        initial={{ x: "50vw" }}
+        animate={{ x: 0 }}
+        transition={{ type: "spring", stiffness: 10 }}
+      >
+        <Box>
+          <Typography
+            variant="h3"
+            sx={{ fontWeight: "bold", marginBottom: "1rem" }}
           >
-            <GitHubIcon sx={{ color: "#FFF", fontSize: "2rem" }} />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/vishnu-syamala-8b12972ba/"
-            target="_blank"
-            rel="noopener noreferrer"
+            Vishnu Vardhan Reddy
+          </Typography>
+          <Typography
+            variant="subtitle1"
+            sx={{ marginBottom: "2rem", maxWidth: "600px", marginX: "auto" }}
           >
-            <LinkedInIcon sx={{ color: "#FFF", fontSize: "2rem" }} />
-          </a>
+            I’m a passionate front-end developer specializing in creating
+            interactive, responsive, and user-friendly web applications. I bring
+            designs to life with HTML, CSS, JavaScript, and React.
+          </Typography>
+          <Box sx={{ display: "flex", gap: "1rem", justifyContent: "center" }}>
+            <Button
+              variant="contained"
+              color="primary"
+              href="" // Google Drive link
+              download="Vishnu_Vardhan_Reddy_CV"
+              sx={{
+                backgroundColor: "#FFC107",
+                color: "#000",
+                fontWeight: "bold",
+                "&:hover": { backgroundColor: "#FFD54F" },
+              }}
+            >
+              Download CV
+            </Button>
+
+            <Button
+              variant="outlined"
+              color="primary"
+              onClick={() => setOpen(true)}
+              sx={{
+                borderColor: "#FFC107",
+                color: "#FFC107",
+                fontWeight: "bold",
+                "&:hover": { color: "#FFD54F" },
+              }}
+            >
+              Hire Me
+            </Button>
+          </Box>
+          <Box
+            sx={{
+              marginTop: "2rem",
+              display: "flex",
+              gap: "1rem",
+              justifyContent: "center",
+            }}
+          >
+            <a
+              href="https://github.com/syamala-vishnu-vardhan-reddy"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <GitHubIcon sx={{ color: "#FFF", fontSize: "2rem" }} />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/vishnu-syamala-8b12972ba/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <LinkedInIcon sx={{ color: "#FFF", fontSize: "2rem" }} />
+            </a>
+          </Box>
         </Box>
-      </Box>
+      </motion.div>
 
       {/* Hire Me Dialog */}
       <Dialog open={open} onClose={() => setOpen(false)}>

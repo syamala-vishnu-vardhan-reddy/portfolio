@@ -16,7 +16,9 @@ import Calculator from "../../calculator/calculator";
 import Tango from "../../tango/tango";
 import EMICalculator from "../../EMICalulator/EMICalculator";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
+import { motion } from "framer-motion";
 
+// Define your projects array
 const projects = [
   {
     id: "weather",
@@ -31,7 +33,7 @@ const projects = [
     id: "Ecommerce",
     title: "Ecommerce",
     description:
-      "An e-commerce website is an online store where customers can buy products,services,digital items.A virtual storefront, allowing customers to browse products, add them to their cart, and make purchases.",
+      "An e-commerce website is an online store where customers can buy products, services, and digital items. A virtual storefront, allowing customers to browse products, add them to their cart, and make purchases.",
     image: "/assets/logo/project3.jpg",
     component: "https://av-ecommerce-client.onrender.com/",
     internal: false,
@@ -47,7 +49,7 @@ const projects = [
   },
   {
     id: "tango",
-    title: "tango",
+    title: "Tango",
     description:
       "The to-do list app is a simple tool to help you organize your tasks. You can add tasks, mark them as completed, and delete them when they're done.",
     image: "/assets/logo/project2.jpg",
@@ -74,6 +76,18 @@ const projects = [
   },
 ];
 
+// Motion variants for hover and transitions
+const cardHover = {
+  hover: { scale: 1.05, boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.2)" },
+};
+
+const pageTransition = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.5 } },
+  exit: { opacity: 0, scale: 0.9, transition: { duration: 0.3 } },
+};
+
+// ProjectDetails component to render details of the selected project
 const ProjectDetails: React.FC = () => {
   const { projectId } = useParams<{ projectId: string }>();
 
@@ -88,36 +102,45 @@ const ProjectDetails: React.FC = () => {
   }
 
   return (
-    <Grid>
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <Grid container justifyContent="space-between" alignItems="center">
-            <Grid item>
-              <Button
-                variant="text"
-                color="secondary"
-                component={Link}
-                to="/projects"
-              >
-                <ArrowBackIcon />
-              </Button>
-            </Grid>
-            <Grid item>
-              <Button variant="text" color="error" component={Link} to="/">
-                <CloseIcon />
-              </Button>
+    <motion.div
+      variants={pageTransition}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+    >
+      <Grid>
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <Grid container justifyContent="space-between" alignItems="center">
+              <Grid item>
+                <Button
+                  variant="text"
+                  color="secondary"
+                  component={Link}
+                  to="/projects"
+                >
+                  <ArrowBackIcon />
+                </Button>
+              </Grid>
+              <Grid item>
+                <Button variant="text" color="error" component={Link} to="/">
+                  <CloseIcon />
+                </Button>
+              </Grid>
             </Grid>
           </Grid>
-        </Grid>
 
-        <Grid item xs={12}>
-          <Grid>{project.component}</Grid>
+          <Grid item xs={12}>
+            {/* Wrap the project component in a motion.div */}
+            <motion.div layoutId="modal">{project.component}</motion.div>
+          </Grid>
         </Grid>
       </Grid>
-    </Grid>
+    </motion.div>
   );
 };
 
+// Projects component to render the list of all projects
 const Projects: React.FC = () => {
   return (
     <Grid>
@@ -125,7 +148,12 @@ const Projects: React.FC = () => {
         <Route
           path="/"
           element={
-            <>
+            <motion.div
+              variants={pageTransition}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+            >
               <Typography variant="h4" gutterBottom>
                 Projects
               </Typography>
@@ -136,46 +164,52 @@ const Projects: React.FC = () => {
               >
                 {projects.map((project) => (
                   <Grid item xs={12} sm={6} md={4} key={project.id}>
-                    <Card>
-                      <CardMedia
-                        component="img"
-                        height="140"
-                        image={project.image}
-                        alt={project.title}
-                      />
-                      <CardContent>
-                        <Typography variant="h5">{project.title}</Typography>
-                        <Typography variant="body2" color="text.secondary">
-                          {project.description}
-                        </Typography>
-                      </CardContent>
-                      {project.internal ? (
-                        <Button
-                          variant="contained"
-                          color="primary"
-                          component={Link}
-                          to={`/projects/${project.id}`}
-                          sx={{ m: 2 }}
-                        >
-                          Open
-                        </Button>
-                      ) : (
-                        <Button
-                          variant="contained"
-                          color="primary"
-                          href={project.component as string}
-                          sx={{ m: 2 }}
-                          target="_blank"
-                        >
-                          lanch
-                          <OpenInNewIcon />
-                        </Button>
-                      )}
-                    </Card>
+                    <motion.div
+                      whileHover="hover"
+                      variants={cardHover}
+                      style={{ borderRadius: "8px", overflow: "hidden" }}
+                    >
+                      <Card>
+                        <CardMedia
+                          component="img"
+                          height="140"
+                          image={project.image}
+                          alt={project.title}
+                        />
+                        <CardContent>
+                          <Typography variant="h5">{project.title}</Typography>
+                          <Typography variant="body2" color="text.secondary">
+                            {project.description}
+                          </Typography>
+                        </CardContent>
+                        {project.internal ? (
+                          <Button
+                            variant="contained"
+                            color="primary"
+                            component={Link}
+                            to={`/projects/${project.id}`}
+                            sx={{ m: 2 }}
+                          >
+                            Open
+                          </Button>
+                        ) : (
+                          <Button
+                            variant="contained"
+                            color="primary"
+                            href={project.component as string}
+                            sx={{ m: 2 }}
+                            target="_blank"
+                          >
+                            Launch
+                            <OpenInNewIcon />
+                          </Button>
+                        )}
+                      </Card>
+                    </motion.div>
                   </Grid>
                 ))}
               </Grid>
-            </>
+            </motion.div>
           }
         />
         <Route path=":projectId" element={<ProjectDetails />} />
