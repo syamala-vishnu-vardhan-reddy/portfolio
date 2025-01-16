@@ -9,16 +9,22 @@ import {
   Box,
   IconButton,
   useMediaQuery,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
 } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
 import EmailIcon from "@mui/icons-material/Email";
 import PhoneIcon from "@mui/icons-material/Phone";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import GitHubIcon from "@mui/icons-material/GitHub";
+import MenuIcon from "@mui/icons-material/Menu";
 
 const Header = () => {
   const location = useLocation();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [drawerOpen, setDrawerOpen] = useState(false); // State for Drawer
 
   const handleAvatarClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -28,23 +34,78 @@ const Header = () => {
     setAnchorEl(null);
   };
 
+  const toggleDrawer = (open: boolean) => () => {
+    setDrawerOpen(open);
+  };
+
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
 
-  // Media Query for Mobile
   const isMobile = useMediaQuery("(max-width:600px)");
 
   const styles = {
     avatar: { marginLeft: "16px", cursor: "pointer" },
     popoverAvatar: { width: "100px", height: "100px", margin: "auto" },
     navButton: { textTransform: "none" },
+    drawerList: { width: 250 },
   };
+
+  const drawerContent = (
+    <Box role="presentation" sx={styles.drawerList}>
+      <List>
+        <ListItem button component={Link} to="/" onClick={toggleDrawer(false)}>
+          <ListItemText primary="Home" />
+        </ListItem>
+        <ListItem
+          button
+          component={Link}
+          to="/about"
+          onClick={toggleDrawer(false)}
+        >
+          <ListItemText primary="About" />
+        </ListItem>
+        <ListItem
+          button
+          component={Link}
+          to="/skills"
+          onClick={toggleDrawer(false)}
+        >
+          <ListItemText primary="Skills" />
+        </ListItem>
+        <ListItem
+          button
+          component={Link}
+          to="/projects"
+          onClick={toggleDrawer(false)}
+        >
+          <ListItemText primary="Projects" />
+        </ListItem>
+        <ListItem
+          button
+          component={Link}
+          to="/contact"
+          onClick={toggleDrawer(false)}
+        >
+          <ListItemText primary="Contact" />
+        </ListItem>
+      </List>
+    </Box>
+  );
 
   return (
     <>
       <AppBar position="sticky">
         <Toolbar>
-          {/* Title */}
+          {isMobile && (
+            <IconButton
+              color="inherit"
+              onClick={toggleDrawer(true)}
+              sx={styles.navButton}
+              aria-label="menu"
+            >
+              <MenuIcon />
+            </IconButton>
+          )}
           <Button color="inherit" component={Link} to="/" sx={styles.navButton}>
             <Typography variant="h6">My Portfolio</Typography>
           </Button>
@@ -109,6 +170,11 @@ const Header = () => {
           />
         </Toolbar>
       </AppBar>
+
+      {/* Drawer */}
+      <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
+        {drawerContent}
+      </Drawer>
 
       {/* Popover for Avatar */}
       <Popover

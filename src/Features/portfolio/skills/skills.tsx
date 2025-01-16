@@ -1,4 +1,4 @@
-import { Container, Typography, Box, Grid, Paper } from "@mui/material";
+import { Typography, Grid } from "@mui/material";
 import { motion } from "framer-motion";
 
 const Skills = () => {
@@ -7,7 +7,7 @@ const Skills = () => {
       icon: (
         <img
           src={"/assets/logo/Javascriptlogo.png"}
-          style={{ width: 150, height: 150 }}
+          style={{ width: "10vh", height: "10vh" }}
         />
       ),
     },
@@ -15,7 +15,7 @@ const Skills = () => {
       icon: (
         <img
           src={"/assets/logo/reactlogo.png"}
-          style={{ width: 150, height: 150 }}
+          style={{ width: "10vh", height: "10vh" }}
         />
       ),
     },
@@ -23,7 +23,7 @@ const Skills = () => {
       icon: (
         <img
           src={"/assets/logo/typescriptlogo.png"}
-          style={{ width: 150, height: 150 }}
+          style={{ width: "10vh", height: "10vh" }}
         />
       ),
     },
@@ -31,7 +31,7 @@ const Skills = () => {
       icon: (
         <img
           src={"/assets/logo/csslogo.png"}
-          style={{ width: 150, height: 150 }}
+          style={{ width: "10vh", height: "10vh" }}
         />
       ),
     },
@@ -39,8 +39,8 @@ const Skills = () => {
       icon: (
         <img
           src={"/assets/logo/htmllogo.png"}
-          alt="React Logo"
-          style={{ width: 150, height: 150 }}
+          alt="HTML Logo"
+          style={{ width: "10vh", height: "10vh" }}
         />
       ),
     },
@@ -48,8 +48,8 @@ const Skills = () => {
       icon: (
         <img
           src={"/assets/logo/redux-icon.png"}
-          alt="React Logo"
-          style={{ width: 150, height: 150 }}
+          alt="Redux Logo"
+          style={{ width: "10vh", height: "10vh" }}
         />
       ),
     },
@@ -57,8 +57,8 @@ const Skills = () => {
       icon: (
         <img
           src={"/assets/logo/sagalogo.png"}
-          alt="React Logo"
-          style={{ width: 200, height: 150 }}
+          alt="Saga Logo"
+          style={{ width: "10vh", height: "10vh" }}
         />
       ),
     },
@@ -66,50 +66,36 @@ const Skills = () => {
       icon: (
         <img
           src={"/assets/logo/materiallogo.png"}
-          alt="React Logo"
-          style={{ width: 150, height: 150 }}
+          alt="Material UI Logo"
+          style={{ width: "10vh", height: "10vh" }}
         />
       ),
     },
   ];
 
-  const cardHover = {
-    hover: { scale: 1.05, boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.2)" },
-  };
-
   return (
-    <Container sx={{ marginTop: -8, marginLeft: -2 }}>
-      <Box mt={8}>
+    <Grid container>
+      <Grid item xs={3}></Grid>
+      <Grid item xs={6}>
+        {" "}
         <Typography variant="h4" align="left" gutterBottom>
           Skills
         </Typography>
-        <Grid container spacing={4}>
-          {skills.map((skill) => (
-            <Grid item xs={12} sm={6} md={4}>
+        <Grid container spacing={3}>
+          {skills.map((skill, index) => (
+            <Grid item xs={4} key={index}>
               <motion.div
-                whileHover="hover"
-                variants={cardHover}
-                style={{ borderRadius: "8px", overflow: "hidden" }}
+                animate={{ rotate: 360 }}
+                transition={{ duration: 1 }}
               >
-                <Paper
-                  elevation={6}
-                  sx={{ p: 3, textAlign: "center", borderRadius: 2 }}
-                >
-                  <Box
-                    display="flex"
-                    alignItems="center"
-                    justifyContent="center"
-                    mb={2}
-                  >
-                    {skill.icon}
-                  </Box>
-                </Paper>
+                {skill.icon}
               </motion.div>
             </Grid>
           ))}
         </Grid>
-      </Box>
-    </Container>
+      </Grid>
+      <Grid item xs={3}></Grid>
+    </Grid>
   );
 };
 
