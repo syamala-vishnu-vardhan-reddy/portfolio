@@ -6,6 +6,7 @@ import {
   Box,
   TextField,
   InputAdornment,
+  useTheme,
 } from "@mui/material";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
@@ -35,6 +36,7 @@ export default function EMICalculator() {
   const [loanAmount, setLoanAmount] = useState(4100000);
   const [interestRate, setInterestRate] = useState(1);
   const [loanTenure, setLoanTenure] = useState(29);
+  const theme = useTheme();
 
   const emi = parseFloat(calculateEMI(loanAmount, interestRate, loanTenure));
   const totalInterest = parseFloat(
@@ -69,8 +71,16 @@ export default function EMICalculator() {
         colorByPoint: true,
         innerSize: "75%",
         data: [
-          { name: "Principal Amount", y: loanAmount, color: "#d3d3f7" },
-          { name: "Interest Amount", y: totalInterest, color: "#6a5acd" },
+          {
+            name: "Principal Amount",
+            y: loanAmount,
+            color: theme.palette.primary.light,
+          },
+          {
+            name: "Interest Amount",
+            y: totalInterest,
+            color: theme.palette.secondary.main,
+          },
         ],
       },
     ],
@@ -79,7 +89,7 @@ export default function EMICalculator() {
   return (
     <Box p={4} sx={{ borderRadius: "8px" }}>
       <Grid container spacing={4}>
-        <Grid item xs={6}>
+        <Grid item xs={12} md={6}>
           <Grid container spacing={4}>
             <Grid item xs={12}>
               <Typography variant="h5" gutterBottom>
@@ -96,7 +106,7 @@ export default function EMICalculator() {
                 <Grid item xs={6}>
                   <TextField
                     variant="filled"
-                    style={{ background: "#b4f0b4" }}
+                    style={{ background: theme.palette.action.selected }}
                     value={loanAmount}
                     onChange={(event) =>
                       setLoanAmount(Number(event.target.value))
@@ -109,7 +119,7 @@ export default function EMICalculator() {
                   />
                 </Grid>
               </Grid>
-              <Box sx={{ maxWidth: 500 }}>
+              <Box sx={{ maxWidth: "100%" }}>
                 <Slider
                   value={loanAmount}
                   min={100000}
@@ -119,7 +129,7 @@ export default function EMICalculator() {
                     setLoanAmount(newValue as number)
                   }
                   valueLabelDisplay="auto"
-                  style={{ color: "#31a831" }}
+                  sx={{ color: theme.palette.primary.main }}
                 />
               </Box>
             </Grid>
@@ -133,7 +143,7 @@ export default function EMICalculator() {
                 <Grid item xs={6}>
                   <TextField
                     variant="filled"
-                    style={{ background: "#b4f0b4" }}
+                    style={{ background: theme.palette.action.selected }}
                     value={interestRate}
                     onChange={(event) =>
                       setInterestRate(Number(event.target.value))
@@ -146,7 +156,7 @@ export default function EMICalculator() {
                   />
                 </Grid>
               </Grid>
-              <Box sx={{ maxWidth: 500 }}>
+              <Box sx={{ maxWidth: "100%" }}>
                 <Slider
                   value={interestRate}
                   min={1}
@@ -156,7 +166,7 @@ export default function EMICalculator() {
                     setInterestRate(newValue as number)
                   }
                   valueLabelDisplay="auto"
-                  style={{ color: "#31a831" }}
+                  sx={{ color: theme.palette.primary.main }}
                 />
               </Box>
             </Grid>
@@ -170,7 +180,7 @@ export default function EMICalculator() {
                 <Grid item xs={6}>
                   <TextField
                     variant="filled"
-                    style={{ background: "#b4f0b4", border: "none" }}
+                    style={{ background: theme.palette.action.selected }}
                     value={loanTenure}
                     onChange={(event) =>
                       setLoanTenure(Number(event.target.value))
@@ -183,7 +193,7 @@ export default function EMICalculator() {
                   />
                 </Grid>
               </Grid>
-              <Box sx={{ maxWidth: 500 }}>
+              <Box sx={{ maxWidth: "100%" }}>
                 <Slider
                   value={loanTenure}
                   min={1}
@@ -193,7 +203,7 @@ export default function EMICalculator() {
                     setLoanTenure(newValue as number)
                   }
                   valueLabelDisplay="auto"
-                  style={{ color: "#31a831" }}
+                  sx={{ color: theme.palette.primary.main }}
                 />
               </Box>
             </Grid>
@@ -221,7 +231,7 @@ export default function EMICalculator() {
         </Grid>
 
         {/* Pie Chart */}
-        <Grid item xs={6}>
+        <Grid item xs={12} md={6}>
           <HighchartsReact highcharts={Highcharts} options={chartOptions} />
         </Grid>
       </Grid>

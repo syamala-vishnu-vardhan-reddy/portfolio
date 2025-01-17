@@ -8,6 +8,7 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
+  useMediaQuery,
 } from "@mui/material";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
@@ -22,6 +23,8 @@ const Home: React.FC = () => {
     message: "",
   });
 
+  const isMobile = useMediaQuery("(max-width:600px)"); // Hook for mobile view detection
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -30,13 +33,12 @@ const Home: React.FC = () => {
   };
 
   const handleSend = () => {
-    // Configure emailjs
     emailjs
       .send(
-        "service_3jghtvr", // Replace with your EmailJS service ID
-        "template_j1dtt2a", // Replace with your EmailJS template ID
+        "service_3jghtvr",
+        "template_j1dtt2a",
         formData,
-        "28a1HGoTcyhxm00aq" // Replace with your EmailJS user ID
+        "28a1HGoTcyhxm00aq"
       )
       .then(
         () => {
@@ -58,15 +60,16 @@ const Home: React.FC = () => {
         color: "white",
         minHeight: "100vh",
         display: "flex",
+        flexDirection: isMobile ? "column" : "row",
         alignItems: "center",
         justifyContent: "center",
         padding: "2rem",
-        position: "relative",
         textAlign: "center",
+        gap: isMobile ? "1.5rem" : "2rem",
       }}
     >
       <motion.div
-        initial={{ x: "-50vw" }}
+        initial={{ x: isMobile ? 0 : "-50vw" }}
         animate={{ x: 0 }}
         transition={{ type: "spring", stiffness: 10 }}
       >
@@ -75,30 +78,34 @@ const Home: React.FC = () => {
           src="/assets/logo/vishnu.jpg"
           alt="Profile"
           sx={{
-            width: "300px",
-            height: "300px",
+            width: isMobile ? "200px" : "300px",
+            height: isMobile ? "200px" : "300px",
             borderRadius: "50%",
             border: "5px solid #FFC107",
-            marginRight: "2rem",
+            margin: isMobile ? "0 auto" : "0",
           }}
         />
       </motion.div>
 
       <motion.div
-        initial={{ x: "50vw" }}
+        initial={{ x: isMobile ? 0 : "50vw" }}
         animate={{ x: 0 }}
         transition={{ type: "spring", stiffness: 10 }}
       >
         <Box>
           <Typography
-            variant="h3"
+            variant={isMobile ? "h5" : "h3"}
             sx={{ fontWeight: "bold", marginBottom: "1rem" }}
           >
             Vishnu Vardhan Reddy
           </Typography>
           <Typography
-            variant="subtitle1"
-            sx={{ marginBottom: "2rem", maxWidth: "600px", marginX: "auto" }}
+            variant={isMobile ? "body2" : "subtitle1"}
+            sx={{
+              marginBottom: "2rem",
+              maxWidth: isMobile ? "90%" : "600px",
+              marginX: "auto",
+            }}
           >
             I’m a passionate front-end developer specializing in creating
             interactive, responsive, and user-friendly web applications. I bring
@@ -147,14 +154,18 @@ const Home: React.FC = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <GitHubIcon sx={{ color: "#FFF", fontSize: "2rem" }} />
+              <GitHubIcon
+                sx={{ color: "#FFF", fontSize: isMobile ? "1.5rem" : "2rem" }}
+              />
             </a>
             <a
               href="https://www.linkedin.com/in/vishnu-syamala-8b12972ba/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <LinkedInIcon sx={{ color: "#FFF", fontSize: "2rem" }} />
+              <LinkedInIcon
+                sx={{ color: "#FFF", fontSize: isMobile ? "1.5rem" : "2rem" }}
+              />
             </a>
           </Box>
         </Box>
@@ -188,7 +199,7 @@ const Home: React.FC = () => {
           <TextField
             margin="dense"
             name="message"
-            label="job description"
+            label="Job Description"
             type="text"
             fullWidth
             multiline

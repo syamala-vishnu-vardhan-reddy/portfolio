@@ -9,7 +9,6 @@ import {
 } from "@mui/material";
 import { Link, Route, Routes, useParams } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import CloseIcon from "@mui/icons-material/Close";
 import WeatherApp from "../../weather/weather";
 import TodoList from "../../todo/todoList";
 import Calculator from "../../calculator/calculator";
@@ -120,11 +119,6 @@ const ProjectDetails: React.FC = () => {
                   to="/projects"
                 >
                   <ArrowBackIcon />
-                </Button>
-              </Grid>
-              <Grid item>
-                <Button variant="text" color="error" component={Link} to="/">
-                  <CloseIcon />
                 </Button>
               </Grid>
             </Grid>

@@ -4,8 +4,11 @@ import { Typography, Box, Link, Container, Paper, Grid } from "@mui/material";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import EmailIcon from "@mui/icons-material/Email";
 import PhoneIcon from "@mui/icons-material/Phone";
+import { useMediaQuery } from "@mui/material";
 
 const Contact: React.FC = () => {
+  const isMobile = useMediaQuery("(max-width:600px)");
+
   return (
     <Box
       sx={{
@@ -14,8 +17,19 @@ const Contact: React.FC = () => {
       }}
       id="contact"
     >
-      <Container maxWidth="md" sx={{ marginLeft: 28 }}>
-        <Paper elevation={3} sx={{ padding: "30px", borderRadius: "12px" }}>
+      <Container
+        maxWidth="md"
+        sx={{
+          margin: "0 auto",
+        }}
+      >
+        <Paper
+          elevation={3}
+          sx={{
+            padding: "30px",
+            borderRadius: "12px",
+          }}
+        >
           <Typography variant="h4" align="center" gutterBottom>
             Contact
           </Typography>
@@ -25,8 +39,9 @@ const Contact: React.FC = () => {
               spacing={3}
               alignItems="center"
               justifyContent="center"
+              direction={isMobile ? "column" : "row"} // Stack vertically for mobile
             >
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={6} md={6}>
                 <Box display="flex" alignItems="center">
                   <EmailIcon sx={{ marginRight: "10px", color: "#3f51b5" }} />
                   <Typography variant="body1">
@@ -40,11 +55,9 @@ const Contact: React.FC = () => {
                   </Typography>
                 </Box>
               </Grid>
-              <Grid item xs={12} sm={6}>
-                <Box display="flex" alignItems="center">
-                  <LinkedInIcon
-                    sx={{ marginRight: "10px", color: "#0077b5" }}
-                  />
+              <Grid item xs={12} sm={5} md={6}>
+                <Box display="flex" alignItems="left">
+                  <LinkedInIcon sx={{ marginRight: "5px", color: "#0077b5" }} />
                   <Typography variant="body1">
                     LinkedIn:{" "}
                     <Link
@@ -56,7 +69,7 @@ const Contact: React.FC = () => {
                   </Typography>
                 </Box>
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={6} md={6}>
                 <Box display="flex" alignItems="center">
                   <GitHubIcon sx={{ marginRight: "10px", color: "#333" }} />
                   <Typography variant="body1">
@@ -70,7 +83,7 @@ const Contact: React.FC = () => {
                   </Typography>
                 </Box>
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={6} md={6}>
                 <Box display="flex" alignItems="center">
                   <PhoneIcon sx={{ marginRight: "10px", color: "#4caf50" }} />
                   <Typography variant="body1">
