@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import emailjs from "emailjs-com";
 import { motion } from "framer-motion";
 import jsPDF from "jspdf";
 
@@ -32,6 +33,26 @@ const Home: React.FC = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleSend = () => {
+    emailjs
+      .send(
+        "service_3jghtvr",
+        "template_j1dtt2a",
+        formData,
+        "28a1HGoTcyhxm00aq"
+      )
+      .then(
+        () => {
+          alert("Message sent successfully!");
+          setOpen(false);
+          setFormData({ name: "", email: "", message: "" });
+        },
+        (error: unknown) => {
+          console.error("Failed to send email:", error);
+          alert("Failed to send message. Please try again.");
+        }
+      );
+  };
   const handleDownloadCV = () => {
     const doc = new jsPDF();
 
@@ -340,7 +361,9 @@ const Home: React.FC = () => {
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setOpen(false)}>Cancel</Button>
-          <Button variant="outlined">Send</Button>
+          <Button variant="outlined" onClick={handleSend}>
+            Send
+          </Button>
         </DialogActions>
       </Dialog>
     </Box>
