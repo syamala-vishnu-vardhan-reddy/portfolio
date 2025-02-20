@@ -16,6 +16,7 @@ import Tango from "../../tango/tango";
 import EMICalculator from "../../EMICalulator/EMICalculator";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import { motion } from "framer-motion";
+import RecipeFinder from "../../RecipeFinder/recipeFinder";
 
 // Define your projects array
 const projects = [
@@ -48,11 +49,20 @@ const projects = [
   },
   {
     id: "tango",
-    title: "Tango",
+    title: "BMICalculator",
     description:
       "The to-do list app is a simple tool to help you organize your tasks. You can add tasks, mark them as completed, and delete them when they're done.",
     image: "/assets/logo/project2.jpg",
     component: <Tango />,
+    internal: true,
+  },
+  {
+    id: "recipe finder",
+    title: "recipe finder",
+    description:
+      "The to-do list app is a simple tool to help you organize your tasks. You can add tasks, mark them as completed, and delete them when they're done.",
+    image: "/assets/logo/project2.jpg",
+    component: <RecipeFinder />,
     internal: true,
   },
   {

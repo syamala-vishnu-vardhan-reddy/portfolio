@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Grid, Button, Typography, TextField } from "@mui/material";
+import { Grid, Button, Typography, TextField, Paper } from "@mui/material";
 
-export default function Tango() {
+export default function BmiCalculator() {
   const [weight, setWeight] = useState<string>("");
   const [height, setHeight] = useState<string>("");
   const [bmi, setBmi] = useState<string | null>(null);
@@ -9,17 +9,22 @@ export default function Tango() {
 
   const calculateBmi = () => {
     const heightInMeters = parseFloat(height) / 100;
-    const bmiValue = parseFloat(weight) / (heightInMeters * heightInMeters);
-    setBmi(bmiValue.toFixed(2));
+    if (heightInMeters > 0 && parseFloat(weight) > 0) {
+      const bmiValue = parseFloat(weight) / (heightInMeters * heightInMeters);
+      setBmi(bmiValue.toFixed(2));
 
-    if (bmiValue < 18.5) {
-      setCategory("Underweight");
-    } else if (bmiValue >= 18.5 && bmiValue < 24.9) {
-      setCategory("Normal weight");
-    } else if (bmiValue >= 25 && bmiValue < 29.9) {
-      setCategory("Overweight");
+      if (bmiValue < 18.5) {
+        setCategory("Underweight");
+      } else if (bmiValue >= 18.5 && bmiValue < 24.9) {
+        setCategory("Normal Weight");
+      } else if (bmiValue >= 25 && bmiValue < 29.9) {
+        setCategory("Overweight");
+      } else {
+        setCategory("Obesity");
+      }
     } else {
-      setCategory("Obesity");
+      setBmi(null);
+      setCategory("");
     }
   };
 
@@ -35,84 +40,133 @@ export default function Tango() {
       alignItems="center"
       sx={{
         height: "100vh",
+        background: "black", // Background in black
+        padding: "1rem",
       }}
     >
-      <Grid
-        container
-        direction="column"
+      <Paper
+        elevation={10}
         sx={{
-          width: "375px",
-          height: "auto", // Removed fixed height to adjust based on content
-          backgroundColor: "white",
+          width: "100%",
+          maxWidth: "400px",
+          background: "#FFD700", // Yellow background
           borderRadius: "16px",
-          boxShadow: "0px 8px 16px rgba(0, 0, 0, 0.2)",
-          overflow: "hidden",
-          position: "relative",
+          boxShadow: "0px 10px 30px rgba(255, 215, 0, 0.5)",
+          padding: "2rem",
+          textAlign: "center",
+          color: "black", // Black text
         }}
       >
         <Typography
+          variant="h4"
           sx={{
-            width: "100%",
-            padding: "1rem",
-            borderBottom: "1px solid lightgray",
-            textAlign: "center",
-            fontSize: "2rem",
+            fontWeight: "bold",
             color: "black",
+            marginBottom: "1rem",
           }}
         >
           BMI Calculator
         </Typography>
 
         {/* Input Fields */}
-        <Grid container direction="column" spacing={2} sx={{ padding: "1rem" }}>
-          <Grid item>
-            <TextField
-              label="Weight (kg)"
-              value={weight}
-              onChange={handleChange(setWeight)}
-              fullWidth
-              variant="outlined"
-              inputProps={{ type: "number" }}
-            />
-          </Grid>
-          <Grid item>
-            <TextField
-              label="Height (cm)"
-              value={height}
-              onChange={handleChange(setHeight)}
-              fullWidth
-              variant="outlined"
-              inputProps={{ type: "number" }}
-            />
-          </Grid>
-        </Grid>
+        <TextField
+          label="Weight (kg)"
+          value={weight}
+          onChange={handleChange(setWeight)}
+          fullWidth
+          variant="outlined"
+          inputProps={{ type: "number" }}
+          sx={{
+            marginBottom: "1rem",
+            backgroundColor: "white", // White background for visibility
+            borderRadius: "8px",
+            "& .MuiOutlinedInput-root": {
+              "& fieldset": {
+                borderColor: "black",
+              },
+              "& input": {
+                color: "black",
+              },
+            },
+          }}
+        />
+        <TextField
+          label="Height (cm)"
+          value={height}
+          onChange={handleChange(setHeight)}
+          fullWidth
+          variant="outlined"
+          inputProps={{ type: "number" }}
+          sx={{
+            marginBottom: "1.5rem",
+            backgroundColor: "white", // White background for visibility
+            borderRadius: "8px",
+            "& .MuiOutlinedInput-root": {
+              "& fieldset": {
+                borderColor: "black",
+              },
+              "& input": {
+                color: "black",
+              },
+            },
+          }}
+        />
 
         {/* Calculate Button */}
-        <Grid item sx={{ padding: "1rem" }}>
-          <Button
-            variant="contained"
-            sx={{
-              backgroundColor: "orange", // Keep the button color as orange
-              color: "white", // Button text color
-              borderRadius: "8px",
-              padding: "0.75rem",
-              fontSize: "1rem",
-              width: "100%", // Ensuring the button fills its container width
-            }}
-            onClick={calculateBmi}
-          >
-            Calculate BMI
-          </Button>
-        </Grid>
+        <Button
+          variant="contained"
+          onClick={calculateBmi}
+          sx={{
+            width: "100%",
+            padding: "0.75rem",
+            fontSize: "1rem",
+            background: "black",
+            color: "yellow",
+            fontWeight: "bold",
+            borderRadius: "8px",
+            "&:hover": {
+              background: "#222",
+            },
+          }}
+        >
+          Calculate BMI
+        </Button>
 
-        {/* Result */}
+        {/* Result Display */}
         {bmi && (
-          <Grid item sx={{ padding: "1rem" }}>
-            <Typography variant="h6">Your BMI: {bmi}</Typography>
-            <Typography variant="body1">Category: {category}</Typography>
-          </Grid>
+          <Paper
+            elevation={5}
+            sx={{
+              marginTop: "1.5rem",
+              padding: "1.5rem",
+              borderRadius: "12px",
+              background: "black",
+              color: "yellow",
+            }}
+          >
+            <Typography variant="h5" sx={{ fontWeight: "bold" }}>
+              Your BMI: {bmi}
+            </Typography>
+            <Typography
+              variant="h6"
+              sx={{
+                marginTop: "0.5rem",
+                fontWeight: "bold",
+                color:
+                  category === "Underweight"
+                    ? "#FFA500"
+                    : category === "Normal Weight"
+                    ? "#00FF00"
+                    : category === "Overweight"
+                    ? "#FF4500"
+                    : "#FF0000",
+              }}
+            >
+              Category: {category}
+            </Typography>
+          </Paper>
         )}
-      </Grid>
+      </Paper>
     </Grid>
   );
 }
