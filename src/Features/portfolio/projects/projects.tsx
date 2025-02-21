@@ -17,6 +17,11 @@ import EMICalculator from "../../EMICalulator/EMICalculator";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import { motion } from "framer-motion";
 import RecipeFinder from "../../RecipeFinder/recipeFinder";
+import QuizGame from "../../quizGame/quizGame";
+import MemoryGame from "../../memoryGame/memoryGame";
+import TipCalculator from "../../tipCalculator/tipCalculator";
+import NoteApp from "../../noteTaking/noteTaking";
+import QuoteApp from "../../quoteApp/quoteApp";
 
 // Define your projects array
 const projects = [
@@ -27,6 +32,42 @@ const projects = [
       "The weather app helps you check the weather in different locations. You can enter a city or town name, and it will show you the current temperature and weather conditions.",
     image: "/assets/logo/project1.jpg",
     component: <WeatherApp />,
+    internal: true,
+  },
+  {
+    id: "memoryGame",
+    title: "memoryGame",
+    description:
+      "The weather app helps you check the weather in different locations. You can enter a city or town name, and it will show you the current temperature and weather conditions.",
+    image: "/assets/logo/project1.jpg",
+    component: <MemoryGame />,
+    internal: true,
+  },
+  {
+    id: "NoteApp",
+    title: "NoteApp",
+    description:
+      "The weather app helps you check the weather in different locations. You can enter a city or town name, and it will show you the current temperature and weather conditions.",
+    image: "/assets/logo/project1.jpg",
+    component: <NoteApp />,
+    internal: true,
+  },
+  {
+    id: "QuoteApp",
+    title: "QuoteApp",
+    description:
+      "The weather app helps you check the weather in different locations. You can enter a city or town name, and it will show you the current temperature and weather conditions.",
+    image: "/assets/logo/project1.jpg",
+    component: <QuoteApp />,
+    internal: true,
+  },
+  {
+    id: "tipCalculator",
+    title: "tipCalculator",
+    description:
+      "The weather app helps you check the weather in different locations. You can enter a city or town name, and it will show you the current temperature and weather conditions.",
+    image: "/assets/logo/project1.jpg",
+    component: <TipCalculator />,
     internal: true,
   },
   {
@@ -81,6 +122,15 @@ const projects = [
       "A calculator designed to calculate the EMI for loans, helping users estimate monthly payments.",
     image: "/assets/logo/project3.jpg",
     component: <EMICalculator />,
+    internal: true,
+  },
+  {
+    id: "quizGame",
+    title: "quizGame",
+    description:
+      "A calculator designed to calculate the EMI for loans, helping users estimate monthly payments.",
+    image: "/assets/logo/project3.jpg",
+    component: <QuizGame />,
     internal: true,
   },
 ];
